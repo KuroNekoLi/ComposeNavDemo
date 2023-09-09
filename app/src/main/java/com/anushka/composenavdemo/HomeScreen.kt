@@ -21,9 +21,12 @@ import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
+import androidx.navigation.NavController
+import androidx.navigation.NavHostController
 
 @Composable
-fun HomeScreen( modifier:Modifier = Modifier){
+//fun HomeScreen(navController: NavController, modifier:Modifier = Modifier)
+fun HomeScreen(onNavigateToSecondScreen : (String)->Unit, modifier:Modifier = Modifier){
     var text by remember { mutableStateOf("") }
 
     Column(
@@ -50,7 +53,8 @@ fun HomeScreen( modifier:Modifier = Modifier){
 
         Button(
             onClick = {
-
+//                navController.navigate("second_screen")
+                if (text.isNotEmpty()){onNavigateToSecondScreen(text)}
             },
             modifier = modifier.fillMaxWidth()
         ) {
@@ -61,10 +65,4 @@ fun HomeScreen( modifier:Modifier = Modifier){
             )
         }
     }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun Preview() {
-    HomeScreen()
 }
